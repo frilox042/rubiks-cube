@@ -68,7 +68,7 @@ impl ColorFacet {
             ColorFacet::White,
             ColorFacet::Yellow,
         ];
-        COLOR_FACET.into_iter()
+        COLOR_FACET.iter()
     }
 }
 
@@ -78,10 +78,10 @@ impl RotationDirection {
             RotationDirection::Clockwise,
             RotationDirection::Anticlockwise,
         ];
-        ROTATION_DIRECTION.into_iter()
+        ROTATION_DIRECTION.iter()
     }
 
-    pub fn opposite(&self) -> RotationDirection {
+    pub fn opposite(self) -> RotationDirection {
         match self {
             RotationDirection::Clockwise => RotationDirection::Anticlockwise,
             RotationDirection::Anticlockwise => RotationDirection::Clockwise,
@@ -573,8 +573,8 @@ impl RubiksCube {
 
 pub fn build_facet(color: ColorFacet, index: u8) -> Facet {
     Facet {
-        color: color,
-        index: index,
+        color,
+        index,
     }
 }
 
