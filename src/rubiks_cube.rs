@@ -572,10 +572,7 @@ impl RubiksCube {
 }
 
 pub fn build_facet(color: ColorFacet, index: u8) -> Facet {
-    Facet {
-        color,
-        index,
-    }
+    Facet { color, index }
 }
 
 pub fn build_face(color: ColorFacet) -> Face {
