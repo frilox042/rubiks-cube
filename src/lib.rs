@@ -130,7 +130,6 @@ impl Facet {
 }
 
 impl Face {
-
     fn new(color: ColorFacet) -> Face {
         Face {
             left_top: Facet::new(color, 1),
@@ -181,8 +180,13 @@ impl Face {
     }
 }
 
-impl RubiksCube {
+impl Default for RubiksCube {
+    fn default() -> Self {
+        Self::new()
+    }
+}
 
+impl RubiksCube {
     pub fn new() -> RubiksCube {
         RubiksCube {
             red: Face::new(ColorFacet::Red),
