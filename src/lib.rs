@@ -145,14 +145,14 @@ impl Face {
         }
     }
 
-    pub fn rotate(self, direction: RotationDirection) -> Face {
+    fn rotate(self, direction: RotationDirection) -> Face {
         match direction {
             RotationDirection::Clockwise => Face::rotate_clockwise(self),
             RotationDirection::Anticlockwise => Face::rotate_anticlockwise(self),
         }
     }
 
-    pub fn rotate_clockwise(self) -> Face {
+    fn rotate_clockwise(self) -> Face {
         Face {
             left_top: self.left_bottom,
             top: self.left,
@@ -166,7 +166,7 @@ impl Face {
         }
     }
 
-    pub fn rotate_anticlockwise(self) -> Face {
+    fn rotate_anticlockwise(self) -> Face {
         Face {
             left_top: self.right_top,
             top: self.right,
