@@ -123,7 +123,28 @@ impl std::fmt::Debug for RubiksCube {
     }
 }
 
+impl Facet {
+    fn new(color: ColorFacet, index: u8) -> Facet {
+        Facet { color, index }
+    }
+}
+
 impl Face {
+
+    fn new(color: ColorFacet) -> Face {
+        Face {
+            left_top: Facet::new(color, 1),
+            top: Facet::new(color, 2),
+            right_top: Facet::new(color, 3),
+            left: Facet::new(color, 4),
+            center: Facet::new(color, 5),
+            right: Facet::new(color, 6),
+            left_bottom: Facet::new(color, 7),
+            bottom: Facet::new(color, 8),
+            right_bottom: Facet::new(color, 9),
+        }
+    }
+
     pub fn rotate(self, direction: RotationDirection) -> Face {
         match direction {
             RotationDirection::Clockwise => Face::rotate_clockwise(self),
@@ -161,6 +182,18 @@ impl Face {
 }
 
 impl RubiksCube {
+
+    pub fn new() -> RubiksCube {
+        RubiksCube {
+            red: Face::new(ColorFacet::Red),
+            blue: Face::new(ColorFacet::Blue),
+            green: Face::new(ColorFacet::Green),
+            white: Face::new(ColorFacet::White),
+            orange: Face::new(ColorFacet::Orange),
+            yellow: Face::new(ColorFacet::Yellow),
+        }
+    }
+
     pub fn rotate(self, face: ColorFacet, direction: RotationDirection) -> RubiksCube {
         match face {
             ColorFacet::Blue => RubiksCube::rotate_blue(self, direction),
@@ -568,34 +601,5 @@ impl RubiksCube {
             },
             ..self
         }
-    }
-}
-
-pub fn build_facet(color: ColorFacet, index: u8) -> Facet {
-    Facet { color, index }
-}
-
-pub fn build_face(color: ColorFacet) -> Face {
-    Face {
-        left_top: build_facet(color, 1),
-        top: build_facet(color, 2),
-        right_top: build_facet(color, 3),
-        left: build_facet(color, 4),
-        center: build_facet(color, 5),
-        right: build_facet(color, 6),
-        left_bottom: build_facet(color, 7),
-        bottom: build_facet(color, 8),
-        right_bottom: build_facet(color, 9),
-    }
-}
-
-pub fn build_rubiks_cube() -> RubiksCube {
-    RubiksCube {
-        red: build_face(ColorFacet::Red),
-        blue: build_face(ColorFacet::Blue),
-        green: build_face(ColorFacet::Green),
-        white: build_face(ColorFacet::White),
-        orange: build_face(ColorFacet::Orange),
-        yellow: build_face(ColorFacet::Yellow),
     }
 }
