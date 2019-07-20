@@ -11,12 +11,7 @@ mod tests {
                 let rotated_cube = my_rubiks_cube
                     .rotate(*color, *direction)
                     .rotate(*color, direction.opposite());
-                assert!(
-                    my_rubiks_cube == rotated_cube,
-                    "\n{:?}\n{:?}",
-                    color,
-                    rotated_cube
-                );
+                assert_eq!(my_rubiks_cube, rotated_cube);
             }
         }
     }
@@ -31,12 +26,7 @@ mod tests {
                     .rotate(*color, *direction)
                     .rotate(*color, *direction)
                     .rotate(*color, *direction);
-                assert!(
-                    my_rubiks_cube == rotated_cube,
-                    "\n{:?}\n{:?}",
-                    color,
-                    rotated_cube
-                );
+                assert_eq!(my_rubiks_cube, rotated_cube);
             }
         }
     }
@@ -51,12 +41,7 @@ mod tests {
                     .rotate(*color, direction.opposite())
                     .rotate(*color, direction.opposite())
                     .rotate(*color, direction.opposite());
-                assert!(
-                    rotated_cube == opposite_rotated_cube,
-                    "\n{:?}\n{:?}",
-                    color,
-                    rotated_cube
-                );
+                assert_eq!(rotated_cube, opposite_rotated_cube);
             }
         }
     }
