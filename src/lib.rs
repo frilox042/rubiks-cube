@@ -1,9 +1,9 @@
-mod facet;
 mod color_facet;
+mod facet;
 mod rotation_direction;
 
-pub use crate::facet::Facet;
 pub use crate::color_facet::ColorFacet;
+pub use crate::facet::Facet;
 pub use crate::rotation_direction::RotationDirection;
 
 #[derive(PartialEq, Clone, Copy)]
