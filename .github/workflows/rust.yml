@@ -1,0 +1,21 @@
+name: Rust
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install dev-dependencies
+      run: rustup component add clippy rustfmt
+    - name: Run formatter
+      run: cargo fmt --all -- --check
+    - name: Run linter
+      run: cargo clippy -- -D warnings
+    - name: Build
+      run: cargo build --verbose --all
+    - name: Run tests
+      run: cargo test --verbose --all
