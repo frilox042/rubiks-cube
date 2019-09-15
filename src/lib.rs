@@ -1,12 +1,8 @@
-use std::slice::Iter;
 mod color_facet;
-pub use crate::color_facet::ColorFacet;
+mod rotation_direction;
 
-#[derive(PartialEq, Debug, Clone, Copy)]
-pub enum RotationDirection {
-    Clockwise,
-    Anticlockwise,
-}
+pub use crate::color_facet::ColorFacet;
+pub use crate::rotation_direction::RotationDirection;
 
 #[derive(PartialEq, Clone, Copy)]
 pub struct Facet {
@@ -35,23 +31,6 @@ pub struct RubiksCube {
     pub orange: Face,
     pub white: Face,
     pub yellow: Face,
-}
-
-impl RotationDirection {
-    pub fn iterator() -> Iter<'static, RotationDirection> {
-        static ROTATION_DIRECTION: [RotationDirection; 2] = [
-            RotationDirection::Clockwise,
-            RotationDirection::Anticlockwise,
-        ];
-        ROTATION_DIRECTION.iter()
-    }
-
-    pub fn opposite(self) -> RotationDirection {
-        match self {
-            RotationDirection::Clockwise => RotationDirection::Anticlockwise,
-            RotationDirection::Anticlockwise => RotationDirection::Clockwise,
-        }
-    }
 }
 
 impl std::fmt::Debug for Facet {
