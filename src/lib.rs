@@ -1,14 +1,10 @@
+mod facet;
 mod color_facet;
 mod rotation_direction;
 
+pub use crate::facet::Facet;
 pub use crate::color_facet::ColorFacet;
 pub use crate::rotation_direction::RotationDirection;
-
-#[derive(PartialEq, Clone, Copy)]
-pub struct Facet {
-    pub color: ColorFacet,
-    pub index: u8,
-}
 
 #[derive(PartialEq, Clone, Copy)]
 pub struct Face {
@@ -31,12 +27,6 @@ pub struct RubiksCube {
     pub orange: Face,
     pub white: Face,
     pub yellow: Face,
-}
-
-impl std::fmt::Debug for Facet {
-    fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
-        write!(f, "{:?}{} ", self.color, self.index)
-    }
 }
 
 impl std::fmt::Debug for Face {
@@ -64,12 +54,6 @@ impl std::fmt::Debug for RubiksCube {
             "{:?}\n\n{:?}\n\n{:?}\n\n{:?}\n\n{:?}\n\n{:?}",
             self.red, self.blue, self.green, self.white, self.orange, self.yellow
         )
-    }
-}
-
-impl Facet {
-    fn new(color: ColorFacet, index: u8) -> Facet {
-        Facet { color, index }
     }
 }
 
